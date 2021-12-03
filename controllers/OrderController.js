@@ -57,7 +57,7 @@ OrderController.crearOrder = (req, res) => {
 
 //-------------------------------------------------------------------------------------
 
-//ACTUALIZAMOS PELICULA EXISTENTE
+//ACTUALIZAR ORDER EXISTENTE
 OrderController.actualizarOrder = (req, res) => {
 
           const id = req.params.id;
@@ -85,7 +85,7 @@ OrderController.actualizarOrder = (req, res) => {
 
 //-------------------------------------------------------------------------------------
 
-//BORRAMOS PELICULA, BUSCANDO POR ID
+//BORRAMOS PEDIDO BUSCADO POR ID
 OrderController.borrarOrder = (req, res) => {
 
         const id = req.params.id;

@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "remoto",
+    "password": "Consola06",
+    "database": "pruebabackend",
+    "host": "192.168.1.140",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "remoto",
+    "password": "Consola06",
+    "database": "pruebabackend",
+    "host": "localhost",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "remoto",
+    "password": "Consola06",
+    "database": "pruebabackend",
+    "host": "localhost",
+    "dialect": "mysql"
+  }
+}

@@ -7,7 +7,7 @@ const OrderController = {}; //CREAMOS EL OBJETO CONTROLADOR
 
 
 
-//OBTENEMOS LISTADO DE TODAS LAS PELÍCULAS
+//OBTENEMOS LISTADO DE TODAS LAS ORDERS
 OrderController.obtenerTodos = (req, res) => {
 
     orders.findAll()
@@ -24,149 +24,26 @@ OrderController.obtenerTodos = (req, res) => {
 
 //-------------------------------------------------------------------------------------
 
-//OBTENEMOS PELICULA POR ID
-OrderController.getById = (req, res) => {
-  const id = req.params.id;
-
-  orders.findByPk(id)
-    .then(data => {
-      if (data) {
-        res.send(data);
-      } else {
-        res.status(404).send({
-          message: `No existe la película con el id ${id}.`
-        });
-      }
-    })
-    .catch(err => {
-      res.status(500).send({
-        message: "Ha surgido algún error al intentar acceder a la película con el id " + id + "."
-      });
-    });
-};
-
-//-------------------------------------------------------------------------------------
-
-//OBTENEMOS PELICULA POR TITULO
-OrderController.getByTitulo = (req, res) => {
-
-  let titulo = req.params.titulo;
-  
-  orders.findAll( {where: {titulo: titulo}})
-    .then(data => {
-      res.send(data);
-    })
-    .catch(err => {
-      res.status(500).send({
-        message:
-          err.message || "Ha surgido algún error al intentar acceder a las películas."
-      });
-    });
-};
-
-//-------------------------------------------------------------------------------------
-
-//OBTENEMOS PELICULA POR CIUDAD
-OrderController.getByCity = (req, res) => {
-
-  let ciudad = req.params.ciudad;
-  
-  orders.findAll( {where: {ciudad: ciudad}})
-    .then(data => {
-      res.send(data);
-    })
-    .catch(err => {
-      res.status(500).send({
-        message:
-          err.message || "Ha surgido algún error al intentar acceder a las películas."
-      });
-    });
-};
-
-//-------------------------------------------------------------------------------------
-
-//OBTENEMOS PELICULA POR CIUDAD Y POR DISPONIBILIDAD PARA SER ALQUILADA
-OrderController.getByCityAndRented = (req, res) => {
-
-  let ciudad = req.params.ciudad;
-  let rented = req.params.alquilada
-  
-  orders.findAll( {where: {ciudad: ciudad, alquilada: rented}})
-    .then(data => {
-      res.send(data);
-    })
-    .catch(err => {
-      res.status(500).send({
-        message:
-          err.message || "Ha surgido algún error al intentar acceder a las películas."
-      });
-    });
-};
-
-//-------------------------------------------------------------------------------------
-
-//OBTENEMOS PELICULA POR GENERO
-OrderController.getByGenre = (req, res) => {
-
-  let genre = req.params.genero;
-  
-  orders.findAll( {where: {genero: genre}})
-    .then(data => {
-      res.send(data);
-    })
-    .catch(err => {
-      res.status(500).send({
-        message:
-          err.message || "Ha surgido algún error al intentar acceder a las películas."
-      });
-    });
-};
-
-//-------------------------------------------------------------------------------------
-
-//OBTENEMOS PELICULA POR ACTOR PRINCIPAL
-OrderController.getByMainCharacter = (req, res) => {
-
-  let actor = req.params.actor_principal;
-  
-  orders.findAll( {where: {actor_principal: actor}})
-    .then(data => {
-      res.send(data);
-    })
-    .catch(err => {
-      res.status(500).send({
-        message:
-          err.message || "Ha surgido algún error al intentar acceder a las películas."
-      });
-    });
-};
-
-//-------------------------------------------------------------------------------------
-
-//CREAMOS PELÍCULA NUEVA
-OrderController.create = (req, res) => {
-
-  if (req.user.usuario.rol == "administrador") {// HACEMOS QUE SOLO PUEDA CREARLO EL ADMINISTRADOR
+//CREAR NUEVA ORDER
+OrderController.crearOrder = (req, res) => {
     
-          if (!req.body.titulo) {
+          if (!req.body.order_id) {
             res.status(400).send({
               message: "El contenido no puede estar vacío"
             });
             return;
           }
           
-          const nuevaPelicula = {
-            titulo: req.body.titulo,
-            caratula: req.body.caratula,
-            imagen_promocional: req.body.imagen_promocional,
-            genero: req.body.genero,
-            actor_principal: req.body.actor_principal,
-            sinopsis: req.body.sinopsis,
-            ciudad: req.body.ciudad,
-            alquilada: req.body.alquilada
+          const nuevaOrder = {
+            order_id: req.body.order_id,
+            country: req.body.country,
+            ship_date: req.body.ship_date,
+            company_name: req.body.company_name,
+            status: req.body.status,
+            type: req.body.type,
           };
           
-          orders.create(nuevaPelicula)
+          orders.create(nuevaOrder)
             .then(data => {
               res.send(data);
             })
@@ -176,46 +53,34 @@ OrderController.create = (req, res) => {
                   err.message || "Ha surgido algún error al intentar crear la película."
               });
             });
-  }else{
-    res.send({
-      message: `No tienes permisos para borrar orders. Contacta con un administrador.`
-    });
-  }
 };
 
 //-------------------------------------------------------------------------------------
 
 //ACTUALIZAMOS PELICULA EXISTENTE
-OrderController.update = (req, res) => {
-
-  if (req.user.usuario.rol == "administrador") {// HACEMOS QUE SOLO PUEDA ACTUALIZARLO EL ADMINISTRADOR
+OrderController.actualizarOrder = (req, res) => {
 
           const id = req.params.id;
 
           orders.update(req.body, {
             where: { id: id }
           })
-            .then(num => {
-              if (num == 1) {
+            .then(order => {
+              if (order == 1) {
                 res.send({
-                  message: "La película ha sido actualizada correctamente."
+                  message: "El pedido se ha actualizado correctamente."
                 });
               } else {
                 res.send({
-                  message: `No se ha podido actualizar la película con el id ${id}`
+                  message: `No se ha podido actualizar el pedido con el id ${id}`
                 });
               }
             })
             .catch(err => {
               res.status(500).send({
-                message: "Ha surgido algún error al intentar actualizar la película con el id " + id + "."
+                message: "Ha surgido algún error al intentar actualizar el pedido con el id " + id + "."
               });
             });
-  }else{
-    res.send({
-      message: `No tienes permisos para actualizar la información de la película. Contacta con un administrador.`
-    });
-  }
 };
 
 //-------------------------------------------------------------------------------------

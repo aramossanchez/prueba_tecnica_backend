@@ -8,6 +8,6 @@ const OrderController = require('../controllers/OrderController');
 router.get('/', OrderController.obtenerTodos);
 router.post('/nuevoregistro', OrderController.crearOrder);
 router.put('/actualizarRegistro/:id', OrderController.actualizarOrder);
-// router.delete('/:id', auth, PeliculaController.delete);
+router.delete('/eliminiarRegistro/:id', OrderController.borrarOrder);
 
 module.exports = router;

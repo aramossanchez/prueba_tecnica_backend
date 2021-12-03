@@ -86,9 +86,7 @@ OrderController.actualizarOrder = (req, res) => {
 //-------------------------------------------------------------------------------------
 
 //BORRAMOS PELICULA, BUSCANDO POR ID
-OrderController.delete = (req, res) => {
-
-  if (req.user.usuario.rol == "administrador") {// HACEMOS QUE SOLO PUEDA BORRARLO EL ADMINISTRADOR
+OrderController.borrarOrder = (req, res) => {
 
         const id = req.params.id;
 
@@ -98,11 +96,11 @@ OrderController.delete = (req, res) => {
             .then(num => {
                 if (num == 1) {
                     res.send({
-                        message: `La película con id ${id} ha sido eliminada correctamente.`
+                        message: `El pedido con id ${id} ha sido eliminado correctamente.`
                     });
                 } else {
                     res.send({
-                        message: `No se ha podido eliminar la película con id ${id}.`
+                        message: `No se ha podido eliminar el pedido con id ${id}.`
                     });
                 }
             })
@@ -111,11 +109,6 @@ OrderController.delete = (req, res) => {
                     message: "Ha surgido algún error al intentar borrar la película con el id " + id
                 });
             });
-  }else{
-    res.send({
-      message: `No tienes permisos para borra la película. Contacta con un administrador.`
-    });
-  }
 };
 
 //-------------------------------------------------------------------------------------

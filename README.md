@@ -7,8 +7,6 @@
 ![TABLA](./screenshots/tabla.jpg)
 ***
 
-## Url donde está deployado el proyecto (no necesaria instalación): 
-
 ## Pre-requisitos del proyecto para hacerlo funcionar en tu equipo local:
 
 * Instalar **Nodejs** en nuestro equipo, descargándolo de su página oficial

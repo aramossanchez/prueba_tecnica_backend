@@ -1,4 +1,4 @@
-# prueba_tecnica_backend
+# Prueba Técnica Dynamiza TIC (parte backend)
 
 ## Solicitan prueba técnica en Dynamiza TIC.
 

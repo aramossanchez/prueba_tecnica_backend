@@ -1,6 +1,6 @@
 # Prueba Técnica Dynamiza TIC (parte backend)
 
-## Solicitan prueba técnica en Dynamiza TIC.
+## Solicitan prueba técnica para puesto junior.
 
 ## Consiste en la creación de un crud sobre la entidad Order (ver todos los orders, crear nuevo order, actualizar un order y borrar un order).
 ***

@@ -2,6 +2,8 @@
 
 ## Solicitan prueba técnica en Dynamiza TIC.
 
+## Url de despliegue: https://ars-prueba-tecnica-backend.herokuapp.com/
+
 ## Consiste en la creación de un crud sobre la entidad Order (ver todos los orders, crear nuevo order, actualizar un order y borrar un order).
 ***
 ![TABLA](./screenshots/tabla.jpg)

@@ -1,4 +1,4 @@
-# Prueba Técnica Dynamiza TIC (parte backend)
+# Prueba Técnica (parte backend)
 
 ## Solicitan prueba técnica para puesto junior.
 

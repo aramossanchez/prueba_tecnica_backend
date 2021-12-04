@@ -1,6 +1,6 @@
-# Prueba Técnica Dynamiza TIC (parte backend)
+# Prueba Técnica (parte backend)
 
-## Solicitan prueba técnica en Dynamiza TIC.
+## Solicitan prueba técnica para puesto junior.
 
 ## Url de despliegue: https://ars-prueba-tecnica-backend.herokuapp.com/
 
